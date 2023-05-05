@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nat.pink.base.R;
+import nat.pink.base.model.ObjectMessenge;
 import nat.pink.base.model.ObjectSpin;
+import nat.pink.base.model.ObjectUser;
 import nat.pink.base.model.ObjectsContentSpin;
 import nat.pink.base.utils.Const;
 
@@ -29,88 +31,53 @@ public class DatabaseController {
         this.context = context;
     }
 
-    public List<ObjectsContentSpin> getContentSpinByTime(long id) {
-        if (appDatabase != null) {
-            return appDatabase.getContentSpinDao().getContentSpinByTime(id);
+    public ArrayList<ObjectUser> getAllUser() {
+        try{
+            if (appDatabase != null) {
+                return (ArrayList<ObjectUser>) appDatabase.getUserDao().getAllUser();
+            }
+        }catch (RuntimeException exception){
+            return new ArrayList<>();
         }
         return new ArrayList<>();
     }
 
-    public List<ObjectsContentSpin> getAllContentSpin() {
+    public List<ObjectMessenge> getMessageById(int id) {
         if (appDatabase != null) {
-            return appDatabase.getContentSpinDao().getAll();
+            return appDatabase.getMessengeDao().getMessageByOwnId(id);
         }
         return new ArrayList<>();
     }
 
-    public List<ObjectSpin> getAllSpin() {
+    public Long insertMessenge(ObjectMessenge objectMessenge) {
         if (appDatabase != null) {
-            return appDatabase.getImageDao().getAll();
+            return appDatabase.getMessengeDao().insertMessenge(objectMessenge);
         }
-        return new ArrayList<>();
+        return 0L;
     }
 
-    public ObjectSpin getDefaultSpin() {
+    public Long insertUser(ObjectUser objectUser) {
         if (appDatabase != null) {
-            return appDatabase.getImageDao().getSpinDefault();
+            return appDatabase.getUserDao().insertUser(objectUser);
         }
-        return new ObjectSpin();
+        return 0L;
     }
 
-    public void initDefaultDatabase() {
-        initDataStep1();
-
+    public int updateUser(ObjectUser objectUser) {
+        if (appDatabase != null)
+            return appDatabase.getUserDao().updateUser(objectUser);
+        return 0;
     }
 
-    private void initDataStep1() {
-        ObjectSpin objectSpin = new ObjectSpin();
-        long date = System.currentTimeMillis();
-        objectSpin.setDate(date);
-        objectSpin.setDefault(true);
-        objectSpin.setTypespin(Const.TYPE_SPIN_ALL);
-        objectSpin.setSuggest(true);
-        objectSpin.setTitle(context.getString(R.string.title_default_1));
-        appDatabase.getImageDao().insert(objectSpin);
-
-        List<String> strings = new ArrayList<>();
-        strings.add(context.getString(R.string.content_default_1));
-        strings.add(context.getString(R.string.content_default_2));
-        strings.add(context.getString(R.string.content_default_3));
-        strings.add(context.getString(R.string.content_default_4));
-        strings.add(context.getString(R.string.content_default_5));
-        strings.add(context.getString(R.string.content_default_6));
-        for (int i = 0; i < strings.size(); i++) {
-            ObjectsContentSpin objectsContentSpin = new ObjectsContentSpin();
-            objectsContentSpin.setId(date + i);
-            objectsContentSpin.setContent(strings.get(i));
-            objectsContentSpin.setDate(date);
-            objectSpin.setSuggest(true);
-            objectSpin.setDate(date);
-            objectSpin.setDefault(true);
-            objectsContentSpins.add(objectsContentSpin);
-        }
-        appDatabase.getContentSpinDao().insertAll(objectsContentSpins);
-    }
-
-    public void updateIsDefault(long date) {
+    public void deleteUser(ObjectUser objectUser) {
         if (appDatabase != null) {
-            appDatabase.getImageDao().updateIsDefaultFull();
-            appDatabase.getImageDao().updateIsDefault(date);
+            appDatabase.getUserDao().deleteUser(objectUser);
         }
     }
 
-    public void updateContentSpins(ObjectSpin objectSpin, List<ObjectsContentSpin> objectsContentSpins) {
+    public void deleteMessenger(int id) {
         if (appDatabase != null) {
-            appDatabase.getContentSpinDao().deleteContents(objectSpin.getDate());
-            appDatabase.getContentSpinDao().insertAll(objectsContentSpins);
-            appDatabase.getImageDao().insert(objectSpin);
-        }
-    }
-
-    public void deleteContentSpins(ObjectSpin objectSpin){
-        if (appDatabase != null) {
-            appDatabase.getContentSpinDao().deleteContents(objectSpin.getDate());
-            appDatabase.getImageDao().deleteByTime(objectSpin.getDate());
+            appDatabase.getMessengeDao().deleteMessage(id);
         }
     }
 

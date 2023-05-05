@@ -67,19 +67,8 @@
             android:exported="true"/>
 
         <activity
-            android:name=".ui.home.VideoCallActivity"
-            android:screenOrientation="portrait"
-            android:showOnLockScreen="true" />
-
-        <activity
-            android:name=".ui.home.VideoCallAnswerActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:theme="@style/AppTheme.NoActionBar"
-            android:name=".ui.home.OutCommingActivity"
-            android:screenOrientation="portrait" />
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
 
     </application>
 

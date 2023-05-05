@@ -67,5 +67,27 @@
     <string name="change_picture">Change picture</string>
     <string name="pick_up_the_phone_later">Pick up the phone later</string>
     <string name="make_voice_call_title">Make Voice Call</string>
+    <string name="change_avatar">Change avatar</string>
+    <string name="lives_in">Lives In</string>
+    <string name="hint_lives_in">Parker Rd. Allentown, New Mexico</string>
+    <string name="operation_status">Operation Status</string>
+    <string name="online">Online</string>
+    <string name="online_5_minutes_ago">Online 5 minutes ago</string>
+    <string name="online_30_minutes_ago">Online 30 minutes ago</string>
+    <string name="online_1_hour_ago">Online 1 hour ago</string>
+    <string name="online_1_day_ago">Online 1 day ago</string>
+    <string name="done">Done</string>
+    <string name="make_message_title">Make Message</string>
+    <string name="content_empty_view">You don\'t have a chat list yet.\n Please add a new chat</string>
+    <string name="fake_messenger_title">Fake Messenger</string>
+    <string name="active_now">Active now</string>
+    <string name="Aa">Aa</string>
+    <string name="block_content"><![CDATA[You can\'t reply to this conversation. <u>Learn More</u>]]></string>
+    <string name="live_in">Lives in %s</string>
+    <string name="you_are_friends">You\'re friends on Facebook</string>
+    <string name="removed_a_message">%s removed a message</string>
+    <string name="you">You</string>
+    <string name="ask_save_image">Do you want to save the screenshot ?</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

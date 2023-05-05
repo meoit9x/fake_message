@@ -28,4 +28,10 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="LineSytle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/color_E8E8E8</item>
+    </style>
+
 </resources>

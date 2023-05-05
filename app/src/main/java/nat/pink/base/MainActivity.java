@@ -21,6 +21,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import nat.pink.base.databinding.ActivityMainBinding;
+import nat.pink.base.ui.home.FragmentListUser;
 import nat.pink.base.ui.home.HomeFragment;
 
 import android.view.Menu;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        addFragment(new HomeFragment(), HomeFragment.TAG);
+        addFragment(new FragmentListUser(), FragmentListUser.class.getSimpleName());
         binding.txtShowWeb.setOnClickListener(view -> {
             Intent intent = new Intent(this, ShowWebActivity.class);
             startActivity(intent);

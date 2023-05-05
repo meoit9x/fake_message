@@ -1,5 +1,7 @@
 package nat.pink.base.utils;
 
+import nat.pink.base.model.ObjectMessenge;
+
 public class Config {
     public static final String KEY_CONTENT = "message content";
     public static final String KEY_TYPE_SEND = "type send";
@@ -21,4 +23,12 @@ public class Config {
     public static final int STATUS_RECEIVED = 2;
     public static final int STATUS_NOT_SEND = 3;
     public static final int STATUS_NOT_RECEIVED = 4;
+
+    public static ObjectMessenge createMessage(String data, int type) {
+        ObjectMessenge messageModel = new ObjectMessenge();
+        messageModel.setChatContent(data);
+        messageModel.setDateTime(System.currentTimeMillis());
+        messageModel.setType(type);
+        return messageModel;
+    }
 }

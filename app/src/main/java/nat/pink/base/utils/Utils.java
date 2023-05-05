@@ -2,6 +2,8 @@ package nat.pink.base.utils;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
+import static nat.pink.base.utils.Const.MY_PERMISSIONS_REQUEST_STORAGE;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -31,6 +33,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.google.gson.Gson;
@@ -44,11 +48,24 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.Callable;
 
 import nat.pink.base.R;
 import nat.pink.base.service.AlarmReceiver;
 
 public class Utils {
+
+    public static String getStringFromIndex(Context context, int checked) {
+        if (checked == Const.CHECK_5_M)
+            return context.getString(R.string.online_5_minutes_ago);
+        if (checked == Const.CHECK_30_M)
+            return context.getString(R.string.online_30_minutes_ago);
+        if (checked == Const.CHECK_1_H)
+            return context.getString(R.string.online_1_hour_ago);
+        if (checked == Const.CHECK_1_D)
+            return context.getString(R.string.online_1_day_ago);
+        return context.getString(R.string.online);
+    }
 
     public static void startAlarmService(Activity activity, long time, String action, Serializable objectIncoming) {
         AlarmManager alarmManager = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
@@ -62,6 +79,35 @@ public class Utils {
 
         long l = System.currentTimeMillis() + time;
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, l, pendingIntent);
+    }
+
+    public static void askPermissionStorage(Activity context, Callable<Void> callable) throws Exception {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(context,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE
+                            , Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_STORAGE);
+        } else {
+            callable.call();
+        }
+    }
+
+    public static void requestGetGallery(Activity activity) {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        galleryIntent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+        activity.startActivityForResult(galleryIntent, Const.PICK_FROM_GALLERY);
+    }
+
+    public static int getIndexSelected(Context context, String checked) {
+        if (checked.equals(context.getString(R.string.online_5_minutes_ago)))
+            return Const.CHECK_5_M;
+        if (checked.equals(context.getString(R.string.online_30_minutes_ago)))
+            return Const.CHECK_30_M;
+        if (checked.equals(context.getString(R.string.online_1_hour_ago)))
+            return Const.CHECK_1_H;
+        if (checked.equals(context.getString(R.string.online_1_day_ago)))
+            return Const.CHECK_1_D;
+        return Const.CHECK_ONLINE;
     }
 
     public static void clearFlags(Activity activity) {
@@ -593,6 +639,21 @@ public class Utils {
         else
             i.setType("image/*");
         activity.startActivityForResult(i, isVideo ? Const.ALBUM_REQUEST_ONLY_VIDEO : Const.ALBUM_REQUEST_CODE);
+    }
+
+    public static void hideKeyboard(View view) {
+        if (view == null) {
+            return;
+        }
+        try {
+            InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (!imm.isActive()) {
+                return;
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

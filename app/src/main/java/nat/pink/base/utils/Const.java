@@ -47,4 +47,12 @@ public class Const {
     public static final String ACTION_CALL_VOICE = "ACTION_CALL_VOICE";
     public static final String ACTION_COMMING_VOICE = "ACTION_COMMING_VOICE";
 
+    public static final int MY_PERMISSIONS_REQUEST_STORAGE = 1001;
+    public static final int PICK_FROM_GALLERY = 1000;
+
+    public static final int CHECK_ONLINE = 0;
+    public static final int CHECK_5_M = 1;
+    public static final int CHECK_30_M = 2;
+    public static final int CHECK_1_H = 3;
+    public static final int CHECK_1_D = 4;
 }
