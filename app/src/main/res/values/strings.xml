@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">123B - Fake Messenger</string>
+    <string name="app_name">S666 - Fake Messenger</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -110,4 +110,5 @@
     <string name="verify_phone_number">Xác minh số điện thoại</string>
     <string name="view_home">View home</string>
     <string name="error_request_data">Lỗi server!</string>
+    <string name="accept">Xác nhận</string>
 </resources>

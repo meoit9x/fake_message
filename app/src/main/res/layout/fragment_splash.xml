@@ -1,68 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_dialog_splash"
+    android:gravity="center"
     android:orientation="vertical"
     app:layout_constraintLeft_toLeftOf="parent"
-    android:gravity="center"
     app:layout_constraintRight_toRightOf="parent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_120sdp"
         android:orientation="vertical">
 
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:background="@drawable/bg_dialog_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_20sdp">
+
+            <nat.pink.base.customView.ExtTextView
+                android:id="@+id/ext_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity="center"
+                android:text="@string/dialog_comment_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sdp"
+                app:textViewFontAssetName="@string/font_bold" />
+
+            <nat.pink.base.customView.ExtEditText
+                android:id="@+id/edt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_edit_text"
+                android:inputType="number"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_9E9E9E"
+                android:textSize="@dimen/_12sdp" />
+
+            <nat.pink.base.customView.ExtTextView
+                android:id="@+id/txt_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity="center"
+                android:textColor="@color/carbon_red_a700"
+                android:textSize="@dimen/_18sdp"
+                android:visibility="gone"
+                app:textViewFontAssetName="@string/font_bold" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         <nat.pink.base.customView.ExtTextView
-            android:id="@+id/ext_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:gravity="center"
-            android:text="@string/dialog_comment_title"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_18sdp"
-            app:textViewFontAssetName="@string/font_bold" />
-
-        <nat.pink.base.customView.ExtEditText
-            android:id="@+id/edt_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/bg_edit_text"
-            android:inputType="number"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/color_9E9E9E"
-            android:textSize="@dimen/_12sdp" />
-
-        <nat.pink.base.customView.ExtTextView
-            android:id="@+id/txt_error"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:gravity="center"
-            android:textColor="@color/carbon_red_a700"
-            android:textSize="@dimen/_18sdp"
-            android:visibility="gone"
-            app:textViewFontAssetName="@string/font_bold" />
-
-        <ImageView
             android:id="@+id/txt_ok"
             android:layout_width="@dimen/_130sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/bg_button_save" />
-
+            android:background="@drawable/bg_button_save"
+            android:gravity="center"
+            android:text="@string/accept"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <ImageView
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_gravity="bottom"
+        android:src="@drawable/splash_imageleft" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <ImageView
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/splash_imageright" />
+
+
+</FrameLayout>
 
 
